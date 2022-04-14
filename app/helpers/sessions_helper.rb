@@ -48,8 +48,13 @@ module SessionsHelper
     user == current_user
   end
   
-  # 現在ログイン中のユーザーがいればtrue,そうでなければfaulseを返す。
+  # 現在ログイン中のユーザーがいればtrue,そうでなければfalseを返す。
   def logged_in?
     !current_user.nil?
+  end
+  
+  # 管理権限あるならtrue,そうでなければfalseを返す。
+  def admin_user?
+    current_user.admin?
   end
 end

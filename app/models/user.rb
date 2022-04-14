@@ -10,7 +10,7 @@ class User < ApplicationRecord
             uniqueness: true
   # bcrypt gemを追加したことで、has_secure_passwordを使用することができるようになった。 
   has_secure_password 
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
