@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :admin_user,only: [:index, :destroy]
   
   def new
-    @user = User.new(params[:id])
+    @user = User.new
   end
   
   def show
