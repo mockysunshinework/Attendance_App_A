@@ -125,3 +125,16 @@ p {
     font-weight: normal;
   }
 }
+
+/* 勤怠表示画面テーブル */
+
+#table-attendances {
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  th {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
