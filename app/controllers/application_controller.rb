@@ -8,25 +8,25 @@ class ApplicationController < ActionController::Base
   $days_of_the_week = %w{日 月 火 水 木 金 土}
   
   def set_user
-      @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
+  end
     
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "ログインして下さい"
-        redirect_to login_url
-      end
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "ログインして下さい"
+      redirect_to login_url
     end
+  end
     
-    def correct_user
-      redirect_to root_url unless current_user?(@user)
-    end
+  def correct_user
+    redirect_to root_url unless current_user?(@user)
+  end
     
-    def admin_user
-      unless current_user.admin?
-        redirect_to root_url
-      end
+  def admin_user
+    unless current_user.admin?
+      redirect_to root_url
     end
+  end
     
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
   def set_one_month 

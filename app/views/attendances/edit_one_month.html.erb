@@ -31,7 +31,13 @@
             <%= working_times(day.started_at, day.finished_at) %>
             <% end %>
           </td>
-          <td><%= attendance.text_field :note, class: "form-control" %></td>
+          <td>
+            <% if !current_user.admin? && (Date.current < day.worked_on) %>
+            <%= attendance.text_field :note, readonly: true, class: "form-control" %>
+            <% else %>
+            <%= attendance.text_field :note, class: "form-control" %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       <% end %>
