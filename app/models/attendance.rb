@@ -8,7 +8,7 @@ class Attendance < ApplicationRecord
   validate :finished_at_is_invalid_wihout_started_at
   
   # 退勤時間が存在しない場合、出勤時間は無効
-  validate :started_at_is_invalid_wihout_finished_at, on: :sample
+  validate :started_at_is_invalid_wihout_finished_at, on: :only_update_month
   
   # 出勤時間、退勤時間ともに存在する時、出勤時間より早い退勤時間は無効
   validate :started_at_than_finished_at_fast_if_invalid
