@@ -19,7 +19,8 @@
         <tr>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td><%= $days_of_the_week[day.worked_on.wday] %></td>
-          <% if !current_user.admin? && (Date.current < day.worked_on) %>
+          <!--管理者、それ以外ともに当日より未来の勤怠情報編集不可-->
+          <% if (Date.current < day.worked_on) %>
           <td><%= attendance.time_field :started_at, readonly: true, class: "form-control" %></td>
           <td><%= attendance.time_field :finished_at, readonly: true, class: "form-control" %></td>
           <% else %>
@@ -32,7 +33,8 @@
             <% end %>
           </td>
           <td>
-            <% if !current_user.admin? && (Date.current < day.worked_on) %>
+            <!--管理者、それ以外ともに当日より未来の勤怠情報編集不可-->
+            <% if (Date.current < day.worked_on) %>
             <%= attendance.text_field :note, readonly: true, class: "form-control" %>
             <% else %>
             <%= attendance.text_field :note, class: "form-control" %>
