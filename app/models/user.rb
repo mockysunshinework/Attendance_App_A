@@ -50,6 +50,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
+  # あいまい検索　#{search}の値を含む検索があれば表示、なければ全表示
   def self.search(search)
     if search
       User.where(['name LIKE ?', "%#{search}%"])
