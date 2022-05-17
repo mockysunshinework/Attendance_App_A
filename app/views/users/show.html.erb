@@ -36,6 +36,7 @@
     <thead>
       
       <tr>
+        <th rowspan="2"></th>
         <th rowspan="3">日付</th>
         <th rowspan="3">曜日</th>
         <th colspan="8">【実績】</th>
@@ -52,6 +53,7 @@
         <th rowspan="2">指示者確認</th>
       </tr>
       <tr>
+        <th>残業申請</th>
         <th>時</th>
         <th>分</th>
         <th></th>
@@ -71,6 +73,7 @@
         when '日'
         'text-danger' end %>
       <tr>
+        <td><%= link_to "残業申請", "#", class: "btn btn-primary" %></td>
         <td><%= l(day.worked_on,format: :short) %></td>
         <td class="<%= css_class %>"><%=$days_of_the_week[day.worked_on.wday] %></td>
         <td><%= l(day.started_at, format: :hour) if day.started_at.present? %></td>
