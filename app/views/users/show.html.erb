@@ -53,7 +53,7 @@
         <th colspan="2">終了予定時間</th>
         <th rowspan="2">時間外時間</th>
         <th rowspan="2">業務処理内容</th>
-        <th rowspan="2">指示者確認</th>
+        <th rowspan="2">指示者確認㊞</th>
       </tr>
       <tr>
         <th>残業申請</th>
@@ -110,7 +110,12 @@
         <td colspan="6"></td>
         <td colspan="1"><%= format("%.2f", @total_working_times.to_f) %></td>
         <td colspan="5"></td>
-        <td>所属長承認</td>
+        <td>所属長承認㊞
+          <br>
+        <%= form_with(model: @user, local:true) do |f| %>
+          <%= f.select :user_id, [['上長A', 1], ['上長B', 2]], { include_blank: true, selected: 1 }, { id: "user_id", class: "user_class" } %>
+        <% end %>
+        </td>
       </tr>
     </tfoot>
   </table>
