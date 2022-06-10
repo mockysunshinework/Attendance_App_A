@@ -39,7 +39,8 @@ class UsersController < ApplicationController
       flash[:success] = "更新に成功しました。"
       redirect_to users_url @user
     else
-      render :edit
+      flash[:danger] = "更新に失敗しました。"
+      redirect_to users_url @user
     end
   end
   
