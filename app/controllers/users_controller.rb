@@ -39,8 +39,10 @@ class UsersController < ApplicationController
       flash[:success] = "更新に成功しました。"
       redirect_to users_url @user
     else
-      flash[:danger] = "更新に失敗しました。"
-      redirect_to users_url @user
+      @users = User.search(params[:search]).paginate(page: params[:page])
+      render :index
+      # flash[:danger] = "更新に失敗しました。"
+      # redirect_to users_url @user
     end
   end
   

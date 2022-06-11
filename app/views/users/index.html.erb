@@ -12,33 +12,39 @@
     <%= submit_tag "search", name: nil %>
   </p>
 <% end %>
-    <table class="table table-concerned table-hover">
-      <% @users.each do |user| %>
-      <tr>
-        <td class="col-md-10 col-md-offset-1">
-          <% if current_user.admin? && !current_user?(user) %>
-          <%= user.name %><br>
-          <%= link_to "削除", user, method: :delete,
-                              data: { confirm: "削除してよろしいですか？" },
-                              class: "btn btn-primary btn-default" %><br>
-          <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <button type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" class="btn btn-primary btn-lg">編集</button>
-                </h4>
-              </div>
-              <div id="collapse<%= user.id %>" class="panel-collapse collapse">
-                <div class="panel-body"><%= render 'user', { user: user } %></div>
-              </div>
-            </div>
-            <% end %>
+<!--ローカルファイルからユーザー情報を追加-->
+<div>
+  <%= link_to "ファイルを選択", "#", class: "btn btn-default" %><br>
+  <%= link_to "CSVをインポート", "#", class: "btn btn-primary" %>
+</div>
+<!--アコーディオン表示-->
+<table class="table table-concerned table-hover">
+  <% @users.each do |user| %>
+  <tr>
+    <td class="col-md-10 col-md-offset-1">
+      <% if current_user.admin? && !current_user?(user) %>
+      <%= user.name %><br>
+      <%= link_to "削除", user, method: :delete,
+                          data: { confirm: "削除してよろしいですか？" },
+                          class: "btn btn-primary btn-default" %><br>
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <button type="button" data-toggle="collapse" data-target="#collapse<%= user.id %>" class="btn btn-primary btn-lg">編集</button>
+            </h4>
           </div>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= will_paginate %>
+          <div id="collapse<%= user.id %>" class="panel-collapse collapse">
+            <div class="panel-body"><%= render 'user', { user: user } %></div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<%= will_paginate %>
 
 <!--モーダルウインドウ表示-->
 <div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
