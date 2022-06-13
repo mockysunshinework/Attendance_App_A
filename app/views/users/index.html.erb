@@ -13,10 +13,10 @@
   </p>
 <% end %>
 <!--ローカルファイルからユーザー情報を追加-->
-<div>
-  <%= link_to "ファイルを選択", "#", class: "btn btn-default" %><br>
-  <%= link_to "CSVをインポート", "#", class: "btn btn-primary" %>
-</div>
+<%= form_tag import_users_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "CSVをインポート", class:"btn btn-primary" %>
+<% end %>
 <!--アコーディオン表示-->
 <table class="table table-concerned table-hover">
   <% @users.each do |user| %>
