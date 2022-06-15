@@ -68,14 +68,23 @@ class UsersController < ApplicationController
   end
 
   def import
-    User.import(params[:file])
-    redirect_to users_url
+    if params[:file].blank?
+      flash[:danger] = "CSVファイルが選ばれていません"
+      redirect_to users_url
+    else
+      User.import(params[:file])
+      flash[:success] = "ユーザーをインポートしました。"
+      redirect_to users_url
+    end
   end
   
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :department, :password,
+                                   :password_confirmation, :employee_number, 
+                                   :uid, :basic_work_time, :designated_work_start_time,
+                                   :designated_work_end_time)
     end
     
     def basic_info_params
