@@ -66,7 +66,7 @@ class User < ApplicationRecord
       # CSVからデータを取得し、設定する
       user.attributes = row.to_hash.slice(*updatable_attributes)
       # 保存する
-      user.save!
+      user.save!(validate: false)
       end
   end
   
