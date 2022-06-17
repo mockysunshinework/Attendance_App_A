@@ -66,6 +66,7 @@ class User < ApplicationRecord
         puts "#{user.name}は更新出来ませんでした"
       else
         # CSVからデータを取得し、設定する
+        user = User.new
         user.attributes = row.to_hash.slice(*updatable_attributes)
         # 保存する
         user.save!(validate: false)
