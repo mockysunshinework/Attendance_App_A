@@ -60,16 +60,22 @@ class User < ApplicationRecord
   end
   
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
+    if file.blank?
+      # ファイル添付がなかった時の処理
+      puts "CSVファイルが添付されていません"
+      return false
+    else
+      CSV.foreach(file.path, headers: true) do |row|
       # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
-      if user = find_by(email: row["email"])
-        puts "#{user.name}は更新出来ませんでした"
-      else
+        if user = find_by(email: row["email"])
+          puts "#{user.name}は更新出来ませんでした"
+        else
         # CSVからデータを取得し、設定する
-        user = User.new
-        user.attributes = row.to_hash.slice(*updatable_attributes)
-        # 保存する
-        user.save!(validate: false)
+          user = User.new
+          user.attributes = row.to_hash.slice(*updatable_attributes)
+          # 保存する
+          user.save!(validate: false)
+        end
       end
     end
   end

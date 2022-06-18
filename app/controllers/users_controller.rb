@@ -68,10 +68,11 @@ class UsersController < ApplicationController
   end
 
   def import
-    if params[:file].blank?
-      flash[:danger] = "読み込むCSVファイルが選択して下さい。"
-      redirect_to users_url
-    else
+    # if params[:file].blank?
+      # flash[:danger] = "読み込むCSVファイルが選択して下さい。"
+      # redirect_to users_url
+    # else
+    unless params[:file].blank?
       User.import(params[:file])
       flash[:success] = "ユーザーをインポートしました。"
       redirect_to users_url
