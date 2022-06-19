@@ -60,29 +60,19 @@ class User < ApplicationRecord
   end
   
   def self.import(file)
-    if file.blank?
-      # ファイル添付がなかった時の処理
-      puts "CSVファイルが添付されていません"
-      return false
-    else
-      CSV.foreach(file.path, headers: true) do |row|
-      # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
-        if user = find_by(email: row["email"])
-          puts "#{user.name}は更新出来ませんでした"
-        else
-        # CSVからデータを取得し、設定する
-          user = User.new
-          user.attributes = row.to_hash.slice(*updatable_attributes)
-          # 保存する
-          user.save!(validate: false)
-        end
-      end
+    CSV.foreach(file.path, headers: true) do |row|
+    # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
+    user = find_by(id: row["id"]) || new
+    # CSVからデータを取得し、設定する
+    user.attributes = row.to_hash.slice(*updatable_attributes)
+    # 保存する
+    user.save!(validate: false)
     end
   end
 
   # 更新を許可するカラムを定義
   def self.updatable_attributes
     ["name", "email", "department", "employee_number", "uid", "basic_work_time", 
-      "designated_work_start_time", "designated_work_end_time"]
+      "designated_work_start_time", "designated_work_end_time", "superior", "admin", "password"]
   end
 end
