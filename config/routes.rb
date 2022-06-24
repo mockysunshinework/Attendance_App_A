@@ -15,11 +15,11 @@ Rails.application.routes.draw do
       patch 'update_basic_info'
       get 'attendances/edit_one_month'
       patch 'attendances/update_one_month'
+      get 'attendances/working'
     end
     collection { post :import }
-    
       
-    resources :attendances, only: [:update, :show]
+    resources :attendances, only: :update
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
