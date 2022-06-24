@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     collection { post :import }
     
       
-    resources :attendances, only: :update
+    resources :attendances, only: [:update, :show]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

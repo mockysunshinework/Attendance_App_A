@@ -75,11 +75,23 @@ class UsersController < ApplicationController
       flash[:danger] = "CSVファイルのみ読み込み可能です。"
       redirect_to users_url
     else
+      if User.all.include?(params[:file])
+        flash[:success] = "登録済みユーザーがいます。"
+      　redirect_to users_url
+      else
       User.import(params[:file])
-      flash[:success] = "ユーザーをインポートしました。"
-      redirect_to users_url
+        flash[:success] = "ユーザーをインポートしました。"
+        redirect_to users_url
+      end
     end
   end
+  
+  # def import
+    # result = User.import(params[:file])
+    # f_message = User.import_result(result)
+    # flash[f_message[:status]] = f_message[:message]
+    # redirect_to users_url
+  # end
   
   private
   
