@@ -4,24 +4,21 @@
   <table class="table table-bordered table-condensed table-hover" id="table-attendances">
     <thead>
       <tr>
-        <th>日付</th>
-        <th>曜日</th>
-        <th>出勤時間</th>
-        <th>退勤時間</th>
-        <th>在社時間</th>
-        <th>備考</th>
+        <th>社員番号</th>
+        <th>名前</th>
+        
       </tr>
     </thead>
     <tbody>
-      <% @attendances.each do |day| %>
+      <% @users.each do |user| %>
+      <% user.attendances.each do |attendance| %>
+      <% if attendance.started_at.present? && attendance.finished_at.nil? %>
         <tr>
-          <td><%= l(day.worked_on, format: :short) %></td>
-          <td><%= $days_of_the_week[day.worked_on.wday] %></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= user.employee_number %></td>
+          <td><%= user.name %></td>
         </tr>
+      <% end %>
+      <% end %>
       <% end %>
     </tbody>
   </table>
