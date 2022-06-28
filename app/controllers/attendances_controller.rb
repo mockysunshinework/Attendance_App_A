@@ -42,9 +42,13 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
-  def working
-    @users = User.all.includes(:attendances)
-  end
+  # def working
+    # @users = User.all.includes(:attendances)
+    # @in_attendances = Attendance.where(worked_on: Date.current)
+                                # .where(finished_at: nil)
+                                # .where.not(started_at: nil)
+                                # .includes(:user)
+  # end
 
   private
   

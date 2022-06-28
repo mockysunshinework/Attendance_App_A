@@ -67,6 +67,10 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def go_work
+    @users = User.all.includes(:attendances)
+  end
+
   def import
     if params[:file].blank?
       flash[:danger] = "読み込むCSVファイルを選択して下さい。"

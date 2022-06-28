@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'attendances/working'
     end
     collection { post :import }
+    collection { get :go_work }
       
     resources :attendances, only: :update
   end

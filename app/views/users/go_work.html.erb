@@ -10,11 +10,17 @@
       </tr>
     </thead>
     <tbody>
-      <% @in_attendances.each do |in_attendance| %>
+      <% @users.each do |user| %>
+        <% user.attendances.each do |attendance| %>
+          <% if attendance.worked_on == Date.current &&
+                attendance.started_at != nil
+                attendance.finished_at == nil %>
       <tr>
-        <td><%= in_attendance.user.employee_number %></td>
-        <td><%= in_attendance.user.name %></td>
+        <td><%= user.employee_number %></td>
+        <td><%= user.name %></td>
       </tr>
+      <% end %>
+      <% end %>
       <% end %>
     </tbody>
   </table>
