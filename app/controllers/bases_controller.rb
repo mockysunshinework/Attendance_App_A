@@ -1,6 +1,7 @@
 class BasesController < ApplicationController
   
   def index
+    @base = Base.new
   end
   
   def new
@@ -10,7 +11,7 @@ class BasesController < ApplicationController
   def create
     @base = Base.new(base_params)
     if @base.save
-      # 保存が成功した時の処理
+      redirect_to bases_path
     else
       render :new
     end
