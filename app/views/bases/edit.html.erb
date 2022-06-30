@@ -1,0 +1,19 @@
+<% provide(:title,'拠点情報更新') %>
+<h1>拠点情報更新</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @base, local: true) do |f| %>
+      <%= render 'shared/bases_error_messages' %>
+      <%= f.label :base_number, class: "label-create-base" %>
+      <%= f.number_field :base_number, class: "form-control" %>
+
+      <%= f.label :base_name, class: "label-create-base" %>
+      <%= f.text_field :base_name, class: "form-control" %>
+
+      <%= f.label :attendance_type, class: "label-create-base" %>
+      <%= f.text_field :attendance_type, class: "form-control" %>
+
+      <%= f.submit "更新", class: "btn btn-primary btn-block btn-create-base" %>
+    <% end %>
+  </div>
+</div>
