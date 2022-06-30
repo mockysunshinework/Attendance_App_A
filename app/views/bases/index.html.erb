@@ -13,14 +13,21 @@
       </tr>
     </thead>
     <tbody>
-      
+      <% @bases.each do |base| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td><%= @base.base_number %></td>
-        <td><%= @base.base_name %></td>
-        <td></td>
+        <td><%= link_to "修正" ,"#", class: "btn btn-primary btn-left" %></td>
+        <td><%= link_to "削除" ,"#", class: "btn btn-primary btn-left" %></td>
+        <td><%= base.base_number %></td>
+        <td><%= base.base_name %></td>
+        <td><%= base.attendance_type %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
+  <tr>
+    <div>
+      <!--背景色を灰色にしたい　質問する-->
+      <%= link_to "拠点情報追加", new_basis_path, class: "btn btn-bg-secondary btn-primary" %>
+    </div>
+  </tr>
 </div>

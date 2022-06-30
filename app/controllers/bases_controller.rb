@@ -1,7 +1,7 @@
 class BasesController < ApplicationController
   
   def index
-    @base = Base.new
+    @bases = Base.all
   end
   
   def new
@@ -11,6 +11,7 @@ class BasesController < ApplicationController
   def create
     @base = Base.new(base_params)
     if @base.save
+      flash[:success] = "拠点情報作成しました。"
       redirect_to bases_path
     else
       render :new
