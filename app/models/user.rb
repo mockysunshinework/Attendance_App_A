@@ -68,7 +68,7 @@ class User < ApplicationRecord
       user.attributes = row.to_hash.slice(*updatable_attributes)
       # 保存する
       user.save!(validate: false)
-    end
+      end
   end
 
 
