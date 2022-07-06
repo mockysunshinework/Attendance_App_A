@@ -20,7 +20,12 @@ Rails.application.routes.draw do
     collection { post :import }
     collection { get :go_work }
       
-    resources :attendances, only: :update
+    resources :attendances, only: :update do
+      member do
+        get 'edit_overtime_application'
+        patch 'update_overtime_application'
+      end
+    end
   end
   
   resources :bases
