@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
   
   def create
-    debugger
     # ユーザーオブジェクトを取得
     user = User.find_by(email: params[:session][:email].downcase) 
     # ユーザーオブジェクトを取得でき、かつパスワードも一致した場合の判定はtrue
