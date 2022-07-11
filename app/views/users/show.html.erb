@@ -78,7 +78,7 @@
       <tr>
         <!--残業申請ボタン-->
         <td>    
-          <%= link_to "残業申請", edit_overtime_application_user_attendance_path(date: day.worked_on, @attendance), class: "btn btn-primary" %>
+          <%= link_to "残業申請", attendances_request_overtime_user_path(date: day.worked_on), class: "btn btn-primary" %>
         </td>
         <td><%= l(day.worked_on,format: :short) %></td>
         <td class="<%= css_class %>"><%=$days_of_the_week[day.worked_on.wday] %></td>

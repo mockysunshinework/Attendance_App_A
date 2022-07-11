@@ -42,13 +42,13 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
-  def edit_overtime_application
+  def request_overtime
     @user = User.find(params[:id])
     @attendance = Attendance.find_by(worked_on: params[:date])
     @attendances = @user.attendances.where(worked_on: @attendance.worked_on)
   end
   
-  def update_overtime_application
+  def update_overtime
   end
   
   # def working
