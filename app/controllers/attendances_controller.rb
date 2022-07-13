@@ -49,6 +49,7 @@ class AttendancesController < ApplicationController
   end
   
   def update_overtime
+    debugger
   end
   
   # def working
@@ -63,6 +64,10 @@ class AttendancesController < ApplicationController
   
   def attendances_params
     params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
+  end
+  
+  def request_params
+    params.require(:user).permit(attendances: [:overtime_request_status, :scheduled_end_time, :overnight, :business_processing, :overtime_boss])[:attendances]
   end
   
   # beforeフィルター
