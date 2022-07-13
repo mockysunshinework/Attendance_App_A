@@ -49,7 +49,17 @@ class AttendancesController < ApplicationController
   end
   
   def update_overtime
-    debugger
+    ActiveRecord::Base.transaction do
+      request_params.each do |id, item|
+        attendance = Attendance.find(id)
+        attendance.update_attributes!(item)
+      end
+    end
+    flash[:success] = "残業申請を受け付けました。"
+    redirect_to user_url(date:params[:date])
+  rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
+  flash[:danger] = "無効な入力データがあった為、申請をキャンセルしました。"
+  redirect_to user_url(date:params[:date])
   end
   
   # def working
